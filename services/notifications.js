@@ -39,4 +39,12 @@ NotficationService.update = (user_action_id, notification_type, follower_action_
     return db.none(sql, { id, updated_at, user_action_id, notification_type, follower_action_id, like_action_id, comment_action_id });
 };
 
+NotficationService.delete = (id) => {
+    const sql = `
+    DELETE FROM notifications WHERE id=$[id]
+    `;
+
+    return db.none(sql, { id });
+};
+
 module.exports = NotficationService;
