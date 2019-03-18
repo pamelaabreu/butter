@@ -48,7 +48,7 @@ NotificationService.delete = (id) => {
     return db.none(sql, { id });
 };
 
-NotificationService.readAllNotfications = (id) => {
+NotificationService.readAllNotifications = (id) => {
     const sql = `
     SELECT 
         notifications.*
