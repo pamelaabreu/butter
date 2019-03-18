@@ -9,7 +9,7 @@ NotificationService.create = (user_action_id, user_received_action_id, notificat
     return db.one(sql, { user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id });
 };
 
-NotficationService.read = (id) => {
+NotificationService.read = (id) => {
     const sql = `
     SELECT
         notifications.*
@@ -21,7 +21,7 @@ NotficationService.read = (id) => {
     return db.one(sql, { id });
 };
 
-NotficationService.update = (user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id) => {
+NotificationService.update = (user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id) => {
     const updated_at = Date.now();
     const sql = `
     UPDATE notifications
@@ -40,7 +40,7 @@ NotficationService.update = (user_action_id, user_received_action_id, notificati
     return db.none(sql, { id, updated_at, user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id });
 };
 
-NotficationService.delete = (id) => {
+NotificationService.delete = (id) => {
     const sql = `
     DELETE FROM notifications WHERE id=$[id]
     `;
@@ -48,7 +48,7 @@ NotficationService.delete = (id) => {
     return db.none(sql, { id });
 };
 
-NotficationService.readAllNotfications = (id) => {
+NotificationService.readAllNotfications = (id) => {
     const sql = `
     SELECT 
         notifications.*
@@ -59,4 +59,4 @@ NotficationService.readAllNotfications = (id) => {
     return db.any(sql, { id });
 };
 
-module.exports = NotficationService;
+module.exports = NotificationService;
