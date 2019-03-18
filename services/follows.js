@@ -128,4 +128,24 @@ FollowService.updateUsersFollowings = (id) => {
     .catch(err => console.log(err))
 };
 
+FollowService.countFollowers = (id) => {
+    const sql = `
+    SELECT COUNT (user_follower_id)
+    FROM follows
+    WHERE user_follower_id = $[id];
+    `;
+
+    db.any(sql, { id })
+};
+
+FollowService.countFollowings = (id) => {
+    const sql = `
+    SELECT COUNT (follows.user_following_id)
+    FROM follows
+    WHERE user_follower_id = $[id];
+    `;
+
+    return db.any(sql, { id });
+};
+
 module.exports = FollowService;
