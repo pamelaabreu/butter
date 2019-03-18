@@ -76,7 +76,7 @@ CommentService.updatePostsComments = (id) => {
     .catch(err => console.log(err))
 };
 
-CommentService.countLikes = (id) => {
+CommentService.countComments = (id) => {
     const sql = `
     SELECT COUNT (post_commented_id)
     FROM comments
