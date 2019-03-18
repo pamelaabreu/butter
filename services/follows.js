@@ -47,8 +47,20 @@ FollowService.delete = (id) => {
 FollowService.readAllFollowers = (id) => {
     const sql = `
     SELECT 
-        follows.user_follower_id
+        follows.user_follower_id,
+        users.id AS user_id,
+        users.birthname,
+        users.username,
+        users.email,
+        users.profile_img,
+        users.birthday,
+        users.joining_reason,
+        users.followers_number,
+        users.followings_number,
+        users.firebase_uid
     FROM follows
+    INNER JOIN users
+    ON follows.user_follower_id = users.id
     WHERE
         follows.user_following_id = $[id]
     `;
@@ -58,8 +70,20 @@ FollowService.readAllFollowers = (id) => {
 FollowService.readAllFollowings = (id) => {
     const sql = `
     SELECT 
-        follows.user_following_id
+        follows.user_following_id,
+        users.id AS user_id,
+        users.birthname,
+        users.username,
+        users.email,
+        users.profile_img,
+        users.birthday,
+        users.joining_reason,
+        users.followers_number,
+        users.followings_number,
+        users.firebase_uid
     FROM follows
+    INNER JOIN users
+    ON follows.user_following_id = users.id
     WHERE
         follows.user_follower_id = $[id]
     `;
