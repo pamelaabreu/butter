@@ -52,7 +52,7 @@ FollowService.readAllFollowers = (id) => {
     WHERE
         follows.user_following_id = $[id]
     `;
-    return db.any(sql, {id});
+    return db.any(sql, { id });
 }
 
 FollowService.readAllFollowings = (id) => {
@@ -63,8 +63,8 @@ FollowService.readAllFollowings = (id) => {
     WHERE
         follows.user_follower_id = $[id]
     `;
-    return db.any(sql, {id});
-}
+    return db.any(sql, { id });
+};
 
 FollowService.updateUsersFollowers = (id) => {
     const updated_at = Date.now();
