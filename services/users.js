@@ -55,5 +55,4 @@ UserService.readAllUsers = () => {
     return db.any(sql);
 };
 
-
 module.exports = UserService;
