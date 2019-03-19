@@ -2,7 +2,7 @@ const {db} = require('./dbConnect');
 const TagService = {};
 
 
-TagService.readAllUsers = () => {
+TagService.readAllTags = () => {
     const sql = `
     SELECT 
         tags.*
