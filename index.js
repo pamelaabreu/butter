@@ -11,10 +11,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-//ROUTES
+// ROUTES
 app.use('/post', postRouter);
 
-
+// ERROR
+app.use((err, req, res, next) => {
+    res.status(400).json({error: err.toString()});
+  });
 
 app.listen(port, () => {
     console.log('Butter API is running on Port: '+port);
