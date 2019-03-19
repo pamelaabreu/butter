@@ -16,7 +16,6 @@ app.use(bodyParser.json())
 app.use('/post', postRouter);
 app.use('/user', userRouter);
 
-
 app.use((err, req, res, next) => {
     res.status(400).json({error: err.toString()});
   });

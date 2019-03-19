@@ -47,13 +47,12 @@ UserService.delete = (id) => {
 };
 
 UserService.readAllUsers = () => {
-    
     const sql = `
     SELECT 
         users.*
     FROM users
     `;
-    
+
     return db.any(sql);
 };
 
