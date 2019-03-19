@@ -4,9 +4,10 @@ const PostService = require('../services/posts');
 
 // POST - CREATE 
 postRouter.post('/', (req, res, next) => {
-    const {user_posted_id, tag_id, content_url, title, summary, caption, likes, comments} = req.body;
+    const { user_posted_id, tag_id, content_url, title, summary, caption } = req.body;
   
-    PostService.create(user_posted_id, tag_id, content_url, title, summary, caption, likes, comments)
+    console.log(req.body)
+    PostService.create(user_posted_id, tag_id, content_url, title, summary, caption)
       .then(() => {
         res.json({success: `Created Post with title ${title}.`});
       })
