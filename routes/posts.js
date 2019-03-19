@@ -28,4 +28,17 @@ postRouter.get('/:id/', (req, res, next) => {
       })
   });
 
+// PUT - UPDATE
+postRouter.put('/:id', (req, res, next) => {
+    const { tag_id, content_url, title, summary, caption } = req.body;
+    const {id} = req.params;
+  
+    PostService.update(id, tag_id, content_url, title, summary, caption)
+      .then(() => {
+        res.json({success: `Updated Post with title ${title} with ID: ${id}`});
+      })
+      .catch(err => {
+        next(err);
+      })
+  });
 module.exports = postRouter;
