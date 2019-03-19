@@ -14,6 +14,17 @@ userRouter.post('/', (req, res, next) => {
         next(err);
       })
   });
+  
+// GET - READ ALL USERS 
+userRouter.get('/all', (req, res, next) => {
+    UserService.readAllUsers()
+      .then(data => {
+        res.json(data);
+      })
+      .catch(err => {
+        next(err);
+      })
+  });
 
 // GET - READ 
 userRouter.get('/:id/', (req, res, next) => {
@@ -45,7 +56,7 @@ userRouter.put('/:id', (req, res, next) => {
 // DELETE - DELETE
 userRouter.delete('/:id', (req, res, next) => {
     const { id } = req.params;
-  
+    
     UserService.delete(id)
       .then(data => {
         res.json({success: `Deleted User with ID: ${id}`});
@@ -54,5 +65,6 @@ userRouter.delete('/:id', (req, res, next) => {
         next(err);
       })
   });
+
 
 module.exports = userRouter;
