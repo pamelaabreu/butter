@@ -46,15 +46,13 @@ UserService.delete = (id) => {
     return db.none(sql, { id });
 };
 
-UserService.readAllUsers = (username) => {
+UserService.readAllUsers = () => {
     const sql = `
     SELECT 
         users.*
     FROM users
-    WHERE
-        users.username = $[username]
     `;
-    return db.any(sql, { username });
+    return db.any(sql);
 };
 
 
