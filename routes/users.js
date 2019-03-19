@@ -28,4 +28,18 @@ userRouter.get('/:id/', (req, res, next) => {
       })
   });
 
+// PUT - UPDATE
+userRouter.put('/:id', (req, res, next) => {
+    const { birthname, username, email, firebase_uid, profile_img, birthday } = req.body;
+    const { id } = req.params;
+  
+    UserService.update(id, birthname, username, email, firebase_uid, profile_img, birthday)
+      .then(data => {
+        res.json({success: `Updated User with username ${username}.`});
+      })
+      .catch(err => {
+        next(err);
+      })
+  });
+
 module.exports = userRouter;
