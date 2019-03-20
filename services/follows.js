@@ -36,7 +36,8 @@ FollowService.update = (id, user_follower_id, user_following_id) => {
 
 FollowService.delete = (id) => {
     const sql = `
-    DELETE FROM follows WHERE id=$[id]
+    DELETE FROM notifications WHERE follower_action_id=$[id];
+    DELETE FROM follows WHERE id=$[id];
     `;
 
     return db.none(sql, { id });
