@@ -17,7 +17,7 @@ followRouter.post('/', (req, res, next) => {
       .catch(err => next(err))
   });
 
-// GET - READ ALL FOLLOWS 
+// GET - READ ALL FOLLOWERS 
 followRouter.get('/:id/readAllFollowers', (req, res, next) => {
     const { id } = req.params;
 
@@ -30,6 +30,18 @@ followRouter.get('/:id/readAllFollowers', (req, res, next) => {
       })
   });
 
+// GET - READ ALL FOLLOWINGS 
+followRouter.get('/:id/readAllFollowings', (req, res, next) => {
+    const { id } = req.params;
+
+    FollowService.readAllFollowings(id)
+      .then(data => {
+        res.json(data);
+      })
+      .catch(err => {
+        next(err);
+      })
+  });
 
 // GET - READ 
 followRouter.get('/:id/', (req, res, next) => {
