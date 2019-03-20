@@ -54,8 +54,8 @@ NotificationService.readAllNotifications = (id) => {
         u.username,
         p.content_url
     FROM notifications AS n
-    INNER JOIN users AS u ON u.id = n.user_action_id
-    INNER JOIN posts AS p ON p.id = n.post_action_id
+    LEFT JOIN users AS u ON u.id = n.user_action_id
+    LEFT JOIN posts AS p ON p.id = n.post_action_id
     WHERE
         n.user_received_action_id = $[id]
     `;
