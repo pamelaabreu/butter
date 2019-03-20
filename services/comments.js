@@ -4,7 +4,7 @@ const CommentService = {};
 CommentService.create = (user_commented_id, post_commented_id, comment) => {
     const sql = `
     INSERT INTO comments (user_commented_id, post_commented_id, comment) VALUES
-    ($[user_commented_id], $[post_commented_id], $[comment]);`;
+    ($[user_commented_id], $[post_commented_id], $[comment]) RETURNING id;`;
 
     return db.one(sql, { user_commented_id, post_commented_id, comment });
 };
@@ -20,7 +20,6 @@ CommentService.read = (id) => {
 
     return db.one(sql, { id });
 };
-
 
 CommentService.update = (id, user_commented_id, post_commented_id, comment) => {
     const sql = `
@@ -47,13 +46,16 @@ CommentService.delete = (id) => {
 CommentService.readAllComments = (id) => {
     const sql = `
     SELECT 
-        comments.*
+        comments.*,
+        users.username
     FROM comments
+    JOIN users
+    ON users.id = comments.user_commented_id
     WHERE
         comments.post_commented_id = $[id]
     `;
     return db.any(sql, {id});
-}
+};
 
 CommentService.updatePostsComments = (id) => {
     const sql = `
