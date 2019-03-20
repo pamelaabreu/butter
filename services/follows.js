@@ -1,12 +1,12 @@
-const {db} = './dbConnect';
+const {db} = require('./dbConnect');
 const FollowService = {};
 
 FollowService.create = (user_follower_id, user_following_id) => {
     const sql = `
     INSERT INTO follows (user_follower_id, user_following_id) VALUES
-    ($[user_follower_id], $[user_following_id]);`;
+    ($[user_follower_id], $[user_following_id]) RETURNING id;`;
 
-    return db.none(sql, { user_follower_id, user_following_id });
+    return db.one(sql, { user_follower_id, user_following_id });
 };
 
 FollowService.read = (id) => {
