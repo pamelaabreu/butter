@@ -50,7 +50,7 @@ LikeService.readAllLikes = (id) => {
     WHERE
         likes.post_like_id = $[id]
     `;
-    return db.any(sql, {id});
+    return db.any(sql, { id });
 };
 
 LikeService.updateLikes = (id) => {

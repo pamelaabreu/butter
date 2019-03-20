@@ -4,6 +4,7 @@ const LikeService = require('../services/likes');
 const NotificationService = require('../services/notifications');
 const PostService = require('../services/posts');
 
+// POST - CREATE 
 likeRouter.post('/', (req, res, next) => {
     const { user_like_id, post_like_id } = req.body;
 
@@ -18,6 +19,19 @@ likeRouter.post('/', (req, res, next) => {
     .then(() => LikeService.updateLikes(postLike_id))
     .then(() => res.json({success: `User ID ${userLike_id} created liked on Post ID ${postLike_id}.`}))
     .catch(err => next(err))
+  });
+
+// GET - READ ALL LIKES 
+likeRouter.get('/:id/readAllLikes', (req, res, next) => {
+    const { id } = req.params;
+
+    LikeService.readAllLikes(id)
+      .then(data => {
+        res.json(data);
+      })
+      .catch(err => {
+        next(err);
+      })
   });
 
 module.exports = likeRouter;
