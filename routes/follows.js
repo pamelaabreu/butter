@@ -34,4 +34,20 @@ followRouter.get('/:id/', (req, res, next) => {
       })
   });
 
+// PUT - UPDATE
+followRouter.put('/:id', (req, res, next) => {
+    const { user_follower_id, user_following_id } = req.body;
+    const follower_id = parseInt(user_follower_id);
+    const following_id = parseInt(user_following_id);
+    const { id } = req.params;
+  
+    FollowService.update(id, follower_id, following_id)
+      .then(data => {
+        res.json({success: `Updated Follow!`});
+      })
+      .catch(err => {
+        next(err);
+      })
+  });
+
 module.exports = followRouter;
