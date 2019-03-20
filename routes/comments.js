@@ -20,7 +20,7 @@ commentRouter.post('/', (req, res, next) => {
     .catch(err => next(err))
   });
 
-// GET - READ ALL LIKES 
+// GET - READ ALL COMMENTS 
 commentRouter.get('/:id/readAllComments', (req, res, next) => {
     const { id } = req.params;
 
@@ -31,6 +31,16 @@ commentRouter.get('/:id/readAllComments', (req, res, next) => {
       .catch(err => {
         next(err);
       })
+  });
+
+// DELETE - DELETE
+commentRouter.delete('/:id', (req, res, next) => {
+    const { id } = req.params;
+    
+    CommentService.delete(id)
+    .then(data => CommentService.updatePostsComments(data.post_commented_id))
+    .then(() => res.json({success: `Deleted comment on Post ID ${id}.`}))
+    .catch(err => next(err))
   });
 
 module.exports = commentRouter;
