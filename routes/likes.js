@@ -34,4 +34,14 @@ likeRouter.get('/:id/readAllLikes', (req, res, next) => {
       })
   });
 
+// DELETE - DELETE
+likeRouter.delete('/:id', (req, res, next) => {
+    const { id } = req.params;
+    
+    LikeService.delete(id)
+    .then(data => LikeService.updateLikes(data.post_like_id))
+    .then(() => res.json({success: `Deleted like on Post ID ${id}.`}))
+    .catch(err => next(err))
+  });
+
 module.exports = likeRouter;
