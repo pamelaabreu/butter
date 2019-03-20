@@ -10,20 +10,30 @@ followRouter.post('/', (req, res, next) => {
     const following_id = parseInt(user_following_id);
     
     FollowService.create(follower_id, following_id)
+      .then(data =>  NotificationService.create(follower_id, following_id, 'followed', data.id, null, null))
+      .then(() => FollowService.updateUsersFollowers(following_id))
+      .then(() =>  FollowService.updateUsersFollowings(follower_id))
+      .then(() => res.json({success: `Created Follower id ${follower_id} and Following id ${following_id}.`}))
+      .catch(err => next(err))
+  });
+
+// GET - READ ALL FOLLOWS 
+followRouter.get('/:id/readAllFollowers', (req, res, next) => {
+    const { id } = req.params;
+
+    FollowService.readAllFollowers(id)
       .then(data => {
-        return NotificationService.create(follower_id, following_id, 'followed', data.id, null, null)
-      })
-      .then(data => {
-        res.json({success: `Created Follower id ${follower_id} and Following id ${following_id}.`});
+        res.json(data);
       })
       .catch(err => {
         next(err);
       })
   });
 
+
 // GET - READ 
 followRouter.get('/:id/', (req, res, next) => {
-    const {id} = req.params;
+    const { id } = req.params;
   
     FollowService.read(id)
       .then(data => {
@@ -53,11 +63,16 @@ followRouter.put('/:id', (req, res, next) => {
 // DELETE - DELETE
 followRouter.delete('/:id', (req, res, next) => {
     const { id } = req.params;
+    let follower_id = null;
 
     FollowService.delete(id)
       .then(data => {
-        res.json({success: `Deleted Follow with ID: ${id}`});
+        const { user_follower_id, user_following_id } = data;
+        follower_id = user_follower_id;
+        return FollowService.updateUsersFollowers(user_following_id)
       })
+      .then(() => FollowService.updateUsersFollowings(follower_id))
+      .then(() => res.json({success: `Deleted Follow with ID: ${id}`}))
       .catch(err => {
         next(err);
       })
