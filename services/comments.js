@@ -41,7 +41,7 @@ CommentService.delete = (id) => {
     DELETE FROM comments WHERE id=$[id] RETURNING id, post_commented_id;
     `;
 
-    return db.none(sql, { id });
+    return db.one(sql, { id });
 };
 
 CommentService.readAllComments = (id) => {
