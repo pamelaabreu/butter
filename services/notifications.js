@@ -1,12 +1,12 @@
 const {db} = require('./dbConnect');
 const NotificationService = {};
 
-NotificationService.create = (user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id) => {
+NotificationService.create = (user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id, post_action_id) => {
     const sql = `
     INSERT INTO notifications (user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id) VALUES
-    ($[user_action_id], $[user_received_action_id], $[notification_type], $[follower_action_id], $[like_action_id], $[comment_action_id]);`;
+    ($[user_action_id], $[user_received_action_id], $[notification_type], $[follower_action_id], $[like_action_id], $[comment_action_id], $[post_action_id]);`;
 
-    return db.none(sql, { user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id });
+    return db.none(sql, { user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id, post_action_id });
 };
 
 NotificationService.read = (id) => {
@@ -21,7 +21,7 @@ NotificationService.read = (id) => {
     return db.one(sql, { id });
 };
 
-NotificationService.update = (user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id) => {
+NotificationService.update = (user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id, post_action_id) => {
     const sql = `
     UPDATE notifications
     SET
@@ -30,12 +30,13 @@ NotificationService.update = (user_action_id, user_received_action_id, notificat
         follower_action_id = $[follower_action_id],
         like_action_id = $[like_action_id],
         comment_action_id = $[comment_action_id],
-        user_received_action_id = $[user_received_action_id]
+        user_received_action_id = $[user_received_action_id],
+        post_action_id = $[post_action_id]
     WHERE
         id=$[id]
     `;
 
-    return db.none(sql, { id, user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id });
+    return db.none(sql, { id, user_action_id, user_received_action_id, notification_type, follower_action_id, like_action_id, comment_action_id, post_action_id });
 };
 
 NotificationService.delete = (id) => {
@@ -49,8 +50,11 @@ NotificationService.delete = (id) => {
 NotificationService.readAllNotifications = (id) => {
     const sql = `
     SELECT 
-        notifications.*
+        notifications.*,
+        users.username
     FROM notifications
+    JOIN users
+    ON users.id = notifications.user_action_id
     WHERE
         notifications.user_received_action_id = $[id]
     `;
