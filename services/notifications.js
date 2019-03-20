@@ -50,13 +50,14 @@ NotificationService.delete = (id) => {
 NotificationService.readAllNotifications = (id) => {
     const sql = `
     SELECT 
-        notifications.*,
-        users.username
-    FROM notifications
-    JOIN users
-    ON users.id = notifications.user_action_id
+        n.*,
+        u.username,
+        p.content_url
+    FROM notifications AS n
+    INNER JOIN users AS u ON u.id = n.user_action_id
+    INNER JOIN posts AS p ON p.id = n.post_action_id
     WHERE
-        notifications.user_received_action_id = $[id]
+        n.user_received_action_id = $[id]
     `;
     return db.any(sql, { id });
 };
