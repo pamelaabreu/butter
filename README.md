@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pamelaabreu/butter_backend.svg?branch=master)](https://travis-ci.org/pamelaabreu/butter_backend) [![Coverage Status](https://coveralls.io/repos/github/pamelaabreu/butter_backend/badge.svg?branch=master)](https://coveralls.io/github/pamelaabreu/butter_backend?branch=master)
+
 # Butter Backend Deployment App
 
  ## Running Locally
