@@ -37,7 +37,8 @@ CommentService.update = (id, user_commented_id, post_commented_id, comment) => {
 
 CommentService.delete = (id) => {
     const sql = `
-    DELETE FROM comments WHERE id=$[id]
+    DELETE FROM notifications WHERE comment_action_id=$[id];
+    DELETE FROM comments WHERE id=$[id] RETURNING id, post_commented_id;
     `;
 
     return db.none(sql, { id });
