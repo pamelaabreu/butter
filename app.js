@@ -17,6 +17,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // ROUTES
+app.get('/ping', (req, res) => {
+    res.json({'pong': true})
+});
+
 app.use('/post', postRouter);
 app.use('/user', userRouter);
 app.use('/follow', followRouter);
