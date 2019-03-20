@@ -50,4 +50,17 @@ followRouter.put('/:id', (req, res, next) => {
       })
   });
 
+// DELETE - DELETE
+followRouter.delete('/:id', (req, res, next) => {
+    const { id } = req.params;
+
+    FollowService.delete(id)
+      .then(data => {
+        res.json({success: `Deleted Follow with ID: ${id}`});
+      })
+      .catch(err => {
+        next(err);
+      })
+  });
+
 module.exports = followRouter;
