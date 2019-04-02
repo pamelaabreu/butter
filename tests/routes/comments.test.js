@@ -1,6 +1,6 @@
 const request = require('supertest');
 jest.mock('../../utils/comments');
-const {createCommentAndNotify,} = require('../../utils/comments')
+const {createCommentAndNotify,} = require('../../utils/comments');
 const { app } = require('../../app');
 
 test("When creating a new comment, expect 200 response", done => {
@@ -12,7 +12,7 @@ test("When creating a new comment, expect 200 response", done => {
             expect(response.status).toBe(200)
             done()
         })
-})
+});
 
 test("When creating a new comment incorrectly, expect 400 response", done => {
     createCommentAndNotify.mockImplementation(() => Promise.reject());
@@ -23,4 +23,4 @@ test("When creating a new comment incorrectly, expect 400 response", done => {
             expect(response.status).toBe(400)
             done()
         })
-})
+});
