@@ -1,4 +1,5 @@
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const express = require('express');
 const app = express();
 
@@ -11,6 +12,7 @@ const notificationRouter = require('./routes/notifications');
 const tagRouter = require('./routes/tags');
 
 // MIDDLEWARE NEEDED
+app.use(cors());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
