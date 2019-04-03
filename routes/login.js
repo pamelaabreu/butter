@@ -1,19 +1,19 @@
 const express = require('express');
 const loginRouter = express.Router();
-// const LoginService = require('../services/tags');
+const LoginService = require('../services/login');
 
-// GET - READ 
-loginRouter.get('/:id/', (req, res, next) => {
-    const {id} = req.params;
+// GET - READ USER ID
+loginRouter.get('/:firebase_uid/', (req, res, next) => {
+    const {firebase_uid} = req.params;
   
-//     LoginService.read(id)
-//       .then(data => {
-    // res.status(200);
-//         res.json(data);
-//       })
-//       .catch(err => {
-//         next(err);
-//       })
+    LoginService.read(firebase_uid)
+      .then(data => {
+        res.status(200);
+        res.json(data);
+      })
+      .catch(err => {
+        next(err);
+      })
   });
 
 module.exports = loginRouter;
