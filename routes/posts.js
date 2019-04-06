@@ -9,7 +9,7 @@ postRouter.post('/', (req, res, next) => {
     PostService.create(user_posted_id, tag_id, content_url, title, summary, caption)
       .then(data => {
         res.status(200);
-        res.json({success: `Created Post with title ${title}.`});
+        res.json({data: data.id});
       })
       .catch(err => {
         next(err);
