@@ -57,7 +57,7 @@ postRouter.delete('/:id', (req, res, next) => {
   });
 
 // GET - READ ALL POSTS 
-postRouter.get('/:id/all', (req, res, next) => {
+postRouter.get('/all/:id', (req, res, next) => {
     const { id } = req.params;
   
     PostService.readAllPosts(id)
