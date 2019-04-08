@@ -47,12 +47,8 @@ PostService.delete = (id) => {
 PostService.readAllPosts = (id) => {
     const sql = `
     SELECT 
-        posts.*,
-        tags.topic_name,
-        tags.image_url AS tag_image
+        posts.*
     FROM posts
-    INNER JOIN tags
-    ON posts.tag_id = tags.id
     WHERE
         posts.user_posted_id = $[id]
     `;
