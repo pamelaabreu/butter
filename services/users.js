@@ -9,6 +9,18 @@ UserService.create = (birthname, username, email, firebase_uid, profile_img, bir
     return db.one(sql, { birthname, username, email, firebase_uid, profile_img, birthday, joining_reason });
 };
 
+UserService.read = (id) => {
+    const sql = `
+    SELECT
+        users.*
+    FROM users
+    WHERE
+        users.id = $[id]
+    `;
+
+    return db.one(sql, { id });
+};
+
 UserService.readUsername = (username) => {
     const sql = `
     SELECT
