@@ -44,7 +44,7 @@ PostService.delete = (id) => {
     return db.none(sql, { id });
 };
 
-PostService.readAllPosts = (id) => {
+PostService.readAllUsersPosts = (id) => {
     const sql = `
     SELECT 
         posts.*
@@ -55,5 +55,16 @@ PostService.readAllPosts = (id) => {
 
     return db.any(sql, { id });
 };
+
+PostService.readAllPosts = () => {
+    const sql = `
+    SELECT 
+        posts.*
+    FROM posts
+    `;
+
+    return db.any(sql);
+};
+
 
 module.exports = PostService;
