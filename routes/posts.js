@@ -60,7 +60,7 @@ postRouter.delete('/:id', (req, res, next) => {
 postRouter.get('/all/:id', (req, res, next) => {
     const { id } = req.params;
   
-    PostService.readAllPosts(id)
+    PostService.readAllUsersPosts(id)
       .then(data => {
         res.json(data);
       })
