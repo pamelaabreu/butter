@@ -16,8 +16,20 @@ postRouter.post('/', (req, res, next) => {
       })
   });
 
+// GET - READ ALL POSTS 
+postRouter.get('/allPosts', (req, res, next) => {
+
+  PostService.readAllPosts()
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      next(err);
+    })
+});
+
 // GET - READ 
-postRouter.get('/:id/', (req, res, next) => {
+postRouter.get('/:id', (req, res, next) => {
     const { id } = req.params;
   
     PostService.read(id)
@@ -56,7 +68,7 @@ postRouter.delete('/:id', (req, res, next) => {
       })
   });
 
-// GET - READ ALL POSTS 
+// GET - READ ALL USER POSTS 
 postRouter.get('/all/:id', (req, res, next) => {
     const { id } = req.params;
   
@@ -68,5 +80,6 @@ postRouter.get('/all/:id', (req, res, next) => {
         next(err);
       })
   });
+
 
 module.exports = postRouter;
