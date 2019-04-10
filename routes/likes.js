@@ -33,6 +33,22 @@ likeRouter.get('/:id/readAllLikes', (req, res, next) => {
       })
   });
 
+// GET - CHECK LIKE
+likeRouter.get('/checkLike/:postLikeId/:userLikeId', (req, res, next) => {
+  const { postLikeId, userLikeId } = req.params;
+
+  LikeService.checkLike(userLikeId, postLikeId)
+    .then(data => {
+      res.json(data);
+    })
+    .catch(err => {
+      const sqlError = "No data returned from the query."
+      if(err.message.toLowerCase() === sqlError.toLowerCase()){
+        res.json(null)
+      } else next(err);
+    })
+});
+
 // DELETE - DELETE
 likeRouter.delete('/:id', (req, res, next) => {
     const { id } = req.params;
