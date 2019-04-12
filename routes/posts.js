@@ -17,7 +17,7 @@ postRouter.post('/', (req, res, next) => {
   });
 
 // GET - READ ALL POSTS 
-postRouter.get('/allPosts', (req, res, next) => {
+postRouter.get('/allPosts/all', (req, res, next) => {
 
   PostService.readAllPosts()
     .then(data => {
