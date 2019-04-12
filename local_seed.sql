@@ -159,10 +159,10 @@ INSERT INTO tags (topic_name, image_url) VALUES
 
 INSERT INTO users (birthname, username, email, profile_img, birthday, joining_reason, followers_number, followings_number, firebase_uid) VALUES
 ('Pam', 'abrpam', 'pamela@butter.com', 'https://i.imgur.com/3hX8kUS.jpg', '1996-10-26', 'Talking about these conversations is important to me!', 2, 2, 'somethingToken'),
-('Butter', 'butter', 'guest@butter.com', 'https://firebasestorage.googleapis.com/v0/b/butter-frontend.appspot.com/o/WS2vst3JyYXMKOexNqASM4RD3q92%2Fbutter_logo.png?alt=media&token=a78eb5b5-ce56-471b-b5c9-77323e903754', '1996-10-26', 'A place to be open about issues we struggle with is really important.', 0, 0, 'WS2vst3JyYXMKOexNqASM4RD3q92'),  
 ('Jo', 'designdyke', 'jo@jo.com', 'https://www.popsci.com/sites/popsci.com/files/styles/1000_1x_/public/images/2017/10/terrier-puppy.jpg?itok=rIgh3ArV&fc=50,50', '1996-08-11', 'This is so cool!', 1, 1, 'somethingToken'),
 ('Rupa', 'rupa1216', 'rupa@rupa.com', 'https://williamsburgvets.com/wp-content/uploads/2018/03/bulldog-puppy-pic.jpg', '1988-12-16', 'Why didnt this exist before?', 1, 1, 'somethingToken'),
-('Thinx', 'thinx', 'thinx@thinx.com', 'https://mindbodygreen-res.cloudinary.com/images/w_767,q_auto:eco,f_auto,fl_lossy/ptr/QpbufLD/thinx.png', '1988-12-16', 'A company like ours want to be a part of this conversation', 0, 0, 'somethingToken');
+('Thinx', 'thinx', 'thinx@thinx.com', 'https://mindbodygreen-res.cloudinary.com/images/w_767,q_auto:eco,f_auto,fl_lossy/ptr/QpbufLD/thinx.png', '1988-12-16', 'A company like ours want to be a part of this conversation', 0, 0, 'somethingToken'),
+('Butter', 'butter', 'guest@butter.com', 'https://firebasestorage.googleapis.com/v0/b/butter-frontend.appspot.com/o/WS2vst3JyYXMKOexNqASM4RD3q92%2Fbutter_logo.png?alt=media&token=a78eb5b5-ce56-471b-b5c9-77323e903754', '1996-10-26', 'A place to be open about issues we struggle with is really important.', 0, 0, 'WS2vst3JyYXMKOexNqASM4RD3q92');  
 
 INSERT INTO posts (user_posted_id, tag_id, content_url, title, summary, caption, likes, comments) VALUES
 (4, 20, 'https://www.welltodoglobal.com/wp-content/uploads/2018/08/thinx_2-web.jpg', 'Thinx', 'Innovative period-proof underwear brand THINX has launched into the UK, continuing its mission to break taboos surrounding women’s intimate wellness.', 'Break women’s intimate taboos', 0, 0),
